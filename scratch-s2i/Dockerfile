@@ -1,4 +1,4 @@
-FROM scratch
+FROM alpine
 
 LABEL  io.openshift.s2i.destination="/s2i"
 
