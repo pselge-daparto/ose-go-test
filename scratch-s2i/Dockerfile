@@ -6,7 +6,7 @@ COPY ./scratch-s2i/s2i /s2i
 
 RUN chmod +x /s2i
 
-RUN useradd goapp
+RUN useradd -S goapp
 
 USER goapp
 
