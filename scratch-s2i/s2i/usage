@@ -1,0 +1,3 @@
+#!/bin/sh
+
+echo "use image with assemble, usage, run or copy-artifacts"
