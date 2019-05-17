@@ -63,7 +63,20 @@ objects:
           - name: "golang"
             image: "go-s2i:latest"
             ports:
-              - 
+              - containerPort: 8080
+                protocol: "TCP"
+    replicas: 2
+    triggers:
+      - type: "ConfigChange"
+      - type: "ImageChange"
+        imageChangeParams:
+          automatic: true
+          from:
+            kind: "ImageStreamTag"
+            name: "go-s2i:latest"
+    strategy:
+      type: "Rolling"
+    minReadySeconds: 5
 
 parameters:
 - name: SOURCE_REPOSITORY_URL
