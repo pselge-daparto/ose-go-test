@@ -1,7 +1,5 @@
 #!/bin/sh
 
-ls -al /
-ls -al /app
-cd /app
+cd /app/src
 
 go build
