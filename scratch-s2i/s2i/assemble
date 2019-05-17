@@ -1,7 +1,5 @@
 #!/bin/sh
 
-pushd /app
+cd /app
 
 go build
-
-popd
