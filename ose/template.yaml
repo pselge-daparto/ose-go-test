@@ -22,6 +22,11 @@ objects:
         uri: "${SOURCE_REPOSITORY_URL}"
         ref: "${SOURCE_REPOSITORY_REF}"
       contextDir: .
+    strategy:
+      sourceStrategy:
+        from: 
+          kind: "ImageStreamTag"
+          name: "scratch-s2i:latest"
 
 - kind: BuildConfig
   apiVersion: v1
@@ -31,7 +36,7 @@ objects:
     strategy:
       jenkinsPipelineStrategy:
         jenkinsfile: |-
-          node('agent') {
+          node {
             stage 'build'
               openshiftBuild(buildConfig: 'go-build', showBuildLogs: 'true')
           }
@@ -39,7 +44,9 @@ parameters:
 - name: SOURCE_REPOSITORY_URL
   displayName: Git Repository
   description: Go Git Repository
+  value: https://github.com/go-training/helloworld.git
   required: true
+
 - name: SOURCE_REPOSITORY_REF
   displayName: Git Branch
   description: Go Git Repository Branch

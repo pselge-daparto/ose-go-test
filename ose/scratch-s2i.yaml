@@ -3,26 +3,22 @@
 kind: ImageStream
 apiVersion: v1
 metadata:
-  name: scratch-s2i
+  name: "scratch-s2i"
 
 ---
-
-
 
 kind: BuildConfig
 apiVersion: v1
 metadata: 
-  name: scratch-s2i
-specs:
-  strategy:
-    dockerStrategy:
-      dockefilePath: scratch-s2i/Dockerfile
+  name: "scratch-s2i"
+spec:
   source:
     git:
-      uri: "https://github.com/user/app.git"
-    sourceSecret:
-      name: "basicsecret"
+      uri: "https://github.com/pselge-daparto/ose-go-test.git"
+  strategy:
+    dockerStrategy:
+      dockerfilePath: "scratch-s2i/Dockerfile"
   output:
     to:
-      kind: ImageStreamTag
-      name: scratch-s2i:latest
+      kind: "ImageStreamTag"
+      name: "scratch-s2i:latest"
