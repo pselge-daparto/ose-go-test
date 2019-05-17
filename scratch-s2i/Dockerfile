@@ -1,11 +1,12 @@
 FROM alpine
 
-LABEL   io.openshift.s2i.destination="/s2i" \
-        io.openshift.s2i.scripts-url="/s2i"
+LABEL   io.openshift.s2i.destination="/app" \
+        io.openshift.s2i.scripts-url="file:///s2i"
 
 COPY ./scratch-s2i/s2i /s2i
 
 RUN chmod +x /s2i/*
+WORKDIR /app
 
 
 USER 1001
