@@ -6,8 +6,7 @@ COPY ./scratch-s2i/s2i /s2i
 
 RUN chmod +x /s2i
 
-RUN adduser -D goapp
 
-USER goapp
+USER 1001
 
 CMD ["/s2i/usage"]
