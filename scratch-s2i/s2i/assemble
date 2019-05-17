@@ -1,5 +1,7 @@
 #!/bin/sh
 
+ls -al /
+ls -al /app
 cd /app
 
 go build
