@@ -1,0 +1,28 @@
+---
+
+kind: ImageStream
+apiVersion: v1
+metadata:
+  name: scratch-s2i
+
+---
+
+
+
+kind: BuildConfig
+apiVersion: v1
+metadata: 
+  name: scratch-s2i
+specs:
+  strategy:
+    dockerStrategy:
+      dockefilePath: scratch-s2i/Dockerfile
+  source:
+    git:
+      uri: "https://github.com/user/app.git"
+    sourceSecret:
+      name: "basicsecret"
+  output:
+    to:
+      kind: ImageStreamTag
+      name: scratch-s2i:latest
