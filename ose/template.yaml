@@ -8,8 +8,10 @@ metadata:
     tags: "go,scratch"
 objects:
 
-
-  
+- kind: ImageStream
+  apiVersion: v1
+  metadata:
+    name: "go-s2i"
 
 - kind: BuildConfig
   apiVersion: v1
@@ -27,6 +29,10 @@ objects:
         from: 
           kind: "ImageStreamTag"
           name: "scratch-s2i:latest"
+    output:
+      to:
+        kind: "ImageStreamTag"
+        name: "go-s2i:latest"
 
 - kind: BuildConfig
   apiVersion: v1
@@ -39,7 +45,26 @@ objects:
           node {
             stage 'build'
               openshiftBuild(buildConfig: 'go-build', showBuildLogs: 'true')
+            stage 'deploy'
+              openshiftDeploy(deployConfig: 'go-deploy')
           }
+
+- kind: DeploymentConfig
+  apiVersion: v1
+  metadata:
+    name: "go-deploy"
+  spec:
+    template:
+      metadata:
+        labels:
+          name: "go-app"
+      spec:
+        containers:
+          - name: "golang"
+            image: "go-s2i:latest"
+            ports:
+              - 
+
 parameters:
 - name: SOURCE_REPOSITORY_URL
   displayName: Git Repository
