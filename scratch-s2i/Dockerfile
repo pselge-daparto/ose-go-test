@@ -5,9 +5,10 @@ LABEL   io.openshift.s2i.destination="/app" \
 
 COPY ./scratch-s2i/s2i /s2i
 
-RUN chmod +x /s2i/*
-WORKDIR /app
-RUN chown -R 1001 /app && \
+RUN chmod +x /s2i/* && \
+    mkdir /app && \
+    mkdir /.cache && \
+    chown -R 1001 /app && \
     chown -R 1001 /.cache
 
 USER 1001
