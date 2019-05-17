@@ -23,7 +23,7 @@ objects:
       git:
         uri: "${SOURCE_REPOSITORY_URL}"
         ref: "${SOURCE_REPOSITORY_REF}"
-      contextDir: .
+      contextDir: application
     strategy:
       sourceStrategy:
         from: 
@@ -69,7 +69,7 @@ parameters:
 - name: SOURCE_REPOSITORY_URL
   displayName: Git Repository
   description: Go Git Repository
-  value: https://github.com/go-training/helloworld.git
+  value: https://github.com/pselge-daparto/ose-go-test.git
   required: true
 
 - name: SOURCE_REPOSITORY_REF
